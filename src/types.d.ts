@@ -13,7 +13,12 @@ export interface IExpensesRecord {
     amount: number;
 }
 
+export interface IFilters {
+    categoryIds: Array<ExpensesCategory>;
+}
+
 export interface IMainState {
     expensesRecords: Array<IExpensesRecord>;
     editingExpensesRecord: IExpensesRecord | null;
+    filters: IFilters;
 }

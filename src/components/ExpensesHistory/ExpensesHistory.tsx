@@ -1,6 +1,4 @@
-import './ExpensesHistory.styl';
-
-import * as React from 'react';
+import './ExpensesHistory.css';
 
 import moment from 'moment';
 import {
@@ -20,15 +18,16 @@ import {
   CATEGORY_COLORS,
   CATEGORY_NAMES,
 } from '../../constants';
-import { getExpensesHistory } from '../../store/selectors';
+import { getExpensesHistoryFiltered } from '../../store/selectors';
 
 function ExpensesHistory() {
 
   const dispatch = useDispatch();
-  const expensesHistory = useSelector(getExpensesHistory);
+  const expensesHistory = useSelector(getExpensesHistoryFiltered);
 
   return (
     <div className='expenses-history'>
+        <h1>My expenses</h1>
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>

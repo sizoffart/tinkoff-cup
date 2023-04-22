@@ -3,9 +3,13 @@ import {
   PayloadAction,
 } from '@reduxjs/toolkit';
 
-import { NEW_EXPENSES_RECORD } from '../constants';
+import {
+  INITIAL_FILTERS,
+  NEW_EXPENSES_RECORD,
+} from '../constants';
 import type {
   IExpensesRecord,
+  IFilters,
   IMainState,
 } from '../types.d';
 
@@ -37,6 +41,7 @@ const initialState: IMainState = {
     amount: 500,
   }],
   editingExpensesRecord: null,
+  filters: { ...INITIAL_FILTERS },
 };
 
 export const mainSlice = createSlice({
@@ -56,7 +61,10 @@ export const mainSlice = createSlice({
       const maxId = Math.max(...state.expensesRecords.map(({ id }) => id));
       state.expensesRecords.push({ ...state.editingExpensesRecord, id: maxId + 1 } as IExpensesRecord);
       state.editingExpensesRecord = null;
-    }
+    },
+    updateFilters: (state, action: PayloadAction<Partial<IFilters>>) => {
+      state.filters = { ...state.filters,  ...action.payload };
+    },
   },
 });
 
@@ -65,6 +73,7 @@ export const {
   cancelNewRecordEditing,
   updateEditingExpensesRecord,
   completeNewRecordEditing,
+  updateFilters,
 } = mainSlice.actions;
 
 

@@ -1,4 +1,4 @@
-import './NewExpensesRecord.styl';
+import './NewExpensesRecord.css';
 
 import {
   useDispatch,

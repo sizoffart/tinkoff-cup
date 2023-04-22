@@ -24,3 +24,7 @@ export const NEW_EXPENSES_RECORD = {
     date: '',
     amount: 0,
 }
+
+export const INITIAL_FILTERS = {
+    categoryIds: [],
+}
