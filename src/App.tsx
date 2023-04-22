@@ -5,7 +5,6 @@ import {
   Routes,
 } from 'react-router-dom';
 
-import About from './pages/About';
 import MainPage from './pages/Main';
 import store from './store/store';
 
@@ -15,7 +14,6 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/about" element={<About />} />
         </Routes>
       </Router>
     </Provider>
