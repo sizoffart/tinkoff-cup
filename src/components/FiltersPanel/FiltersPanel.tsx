@@ -6,6 +6,7 @@ import {
 } from 'react-redux';
 
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -14,7 +15,10 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
-import { CATEGORY_NAMES } from '../../constants';
+import {
+  CATEGORY_NAMES,
+  INITIAL_FILTERS,
+} from '../../constants';
 import { updateFilters } from '../../store/mainSlice';
 import {
   getFilterCategoryIds,
@@ -40,26 +44,29 @@ function FiltersPanel() {
   const handleDateToChange = (momentDate: any) => dispatch(
     updateFilters({ dateTo: momentDate.toISOString() })
   );
+  const handleResetFiltersClick = () => dispatch(updateFilters({ ...INITIAL_FILTERS }));
 
   return (
     <div className="filters-panel">
         <h1>Filters</h1>
         <div className="filters-panel__controls">
-            <Box sx={{ minWidth: 120 }}>
-                <FormControl fullWidth>
-                    <InputLabel id="categories-select-label">Categories</InputLabel>
-                    <Select
-                        labelId="categories-select-label"
-                        id="categories-select"
-                        value={categoryIds as any}
-                        label="Categories"
-                        onChange={handleCategoriesChange}
-                        multiple
-                    >
-                        {Object.entries(CATEGORY_NAMES).map(([k, v]) => <MenuItem key={k} value={k}>{v}</MenuItem>)}
-                    </Select>
-                </FormControl>
-            </Box>
+            <div className="filters-panel__categories">
+                <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                        <InputLabel id="categories-select-label">Categories</InputLabel>
+                        <Select
+                            labelId="categories-select-label"
+                            id="categories-select"
+                            value={categoryIds as any}
+                            label="Categories"
+                            onChange={handleCategoriesChange}
+                            multiple
+                        >
+                            {Object.entries(CATEGORY_NAMES).map(([k, v]) => <MenuItem key={k} value={k}>{v}</MenuItem>)}
+                        </Select>
+                    </FormControl>
+                </Box>
+            </div>
             <div className="filters-panel__date">
                 <LocalizationProvider dateAdapter={AdapterMoment}>
                     <DatePicker label="Date from" value={dateFrom} onChange={handleDateFromChange} />
@@ -69,6 +76,7 @@ function FiltersPanel() {
                     <DatePicker label="Date to" value={dateTo} onChange={handleDateToChange} />
                 </LocalizationProvider>
             </div>
+            <Button onClick={handleResetFiltersClick} variant="contained">Reset</Button>
         </div>
     </div>
     )
