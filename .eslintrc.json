@@ -1,0 +1,37 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+      "plugin:jsx-a11y/recommended",
+      "plugin:react-redux/recommended",
+      "plugin:redux-saga/recommended"
+    ],
+    "plugins": [
+      "react",
+      "react-hooks",
+      "@typescript-eslint",
+      "import",
+      "jsx-a11y",
+      "react-redux",
+      "redux-saga"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "env": {
+      "browser": true,
+      "es2021": true,
+      "node": true
+    },
+    "rules": {
+      // Add your custom ESLint rules here
+    }
+  }
+  
