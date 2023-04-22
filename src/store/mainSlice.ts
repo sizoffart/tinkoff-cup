@@ -1,7 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  PayloadAction,
+} from '@reduxjs/toolkit';
 
 import { NEW_EXPENSES_RECORD } from '../constants';
-import type { IMainState } from '../types.d';
+import type {
+  IExpensesRecord,
+  IMainState,
+} from '../types.d';
 
 const initialState: IMainState = {
   expensesRecords: [{
@@ -39,20 +45,27 @@ export const mainSlice = createSlice({
   reducers: {
     addNewExpensesRecord: (state) => {
       state.editingExpensesRecord = { ...NEW_EXPENSES_RECORD  };
+    },
+    cancelNewRecordEditing: (state) => {
+      state.editingExpensesRecord = null;
+    },
+    updateEditingExpensesRecord: (state, action: PayloadAction<Partial<IExpensesRecord>>) => {
+      state.editingExpensesRecord = { ...state.editingExpensesRecord, ...action.payload } as IExpensesRecord;
+    },
+    completeNewRecordEditing: (state) => {
+      const maxId = Math.max(...state.expensesRecords.map(({ id }) => id));
+      state.expensesRecords.push({ ...state.editingExpensesRecord, id: maxId + 1 } as IExpensesRecord);
+      state.editingExpensesRecord = null;
     }
-    // increment: (state) => {
-    //   state.value += 1;
-    // },
-    // decrement: (state) => {
-    //   state.value -= 1;
-    // },
-    // incrementByAmount: (state, action: PayloadAction<number>) => {
-    //   state.value += action.payload;
-    // },
   },
 });
 
-export const { addNewExpensesRecord } = mainSlice.actions;
+export const {
+  addNewExpensesRecord,
+  cancelNewRecordEditing,
+  updateEditingExpensesRecord,
+  completeNewRecordEditing,
+} = mainSlice.actions;
 
 
 export default mainSlice.reducer;

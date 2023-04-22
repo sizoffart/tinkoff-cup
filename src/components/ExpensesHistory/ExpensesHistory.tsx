@@ -16,7 +16,10 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-import { CATEGORY_NAMES } from '../../constants';
+import {
+  CATEGORY_COLORS,
+  CATEGORY_NAMES,
+} from '../../constants';
 import { getExpensesHistory } from '../../store/selectors';
 
 function ExpensesHistory() {
@@ -42,9 +45,14 @@ function ExpensesHistory() {
                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
                             <TableCell component="th" scope="row">
-                                { CATEGORY_NAMES[categoryId] }
+                                <span
+                                    className="category-cell__wrap"
+                                    style={{ backgroundColor: CATEGORY_COLORS[categoryId], padding: "5px", borderRadius: "5px" }}
+                                >
+                                    { CATEGORY_NAMES[categoryId] }
+                                </span>
                             </TableCell>
-                            <TableCell>{ moment(date).format('MMMM DD YYYY, HH:mm') }</TableCell>
+                            <TableCell>{ moment(date).format('DD MMMM YYYY') }</TableCell>
                             <TableCell>{ amount }</TableCell>
                         </TableRow>
                     ))}

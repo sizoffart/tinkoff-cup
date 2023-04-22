@@ -8,6 +8,14 @@ export const CATEGORY_NAMES = {
     [ExpensesCategory.OTHER]: 'Other',
 }
 
+export const CATEGORY_COLORS = {
+    [ExpensesCategory.HEALTH]: '#4fc3f7',
+    [ExpensesCategory.RESTAURANT]: '#aed581',
+    [ExpensesCategory.SUPERMARKET]: '#ffb74d',
+    [ExpensesCategory.TAXI]: '#ba68c8',
+    [ExpensesCategory.OTHER]: '#fff176',
+}
+
 export const NEW_EXPENSES_RECORD_ID = -99999;
 
 export const NEW_EXPENSES_RECORD = {
