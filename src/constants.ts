@@ -21,10 +21,12 @@ export const NEW_EXPENSES_RECORD_ID = -99999;
 export const NEW_EXPENSES_RECORD = {
     id: NEW_EXPENSES_RECORD_ID,
     categoryId: ExpensesCategory.OTHER,
-    date: '',
-    amount: 0,
+    date: null,
+    amount: null,
 }
 
 export const INITIAL_FILTERS = {
     categoryIds: [],
+    dateFrom: null,
+    dateTo: null,
 }

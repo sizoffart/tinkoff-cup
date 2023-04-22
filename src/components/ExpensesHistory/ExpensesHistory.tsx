@@ -24,6 +24,12 @@ function ExpensesHistory() {
 
   const dispatch = useDispatch();
   const expensesHistory = useSelector(getExpensesHistoryFiltered);
+  const totalAmount = expensesHistory.reduce(
+    (result, record) => {
+        result += Number(record.amount);
+        return result;
+    }, 0
+  );
 
   return (
     <div className='expenses-history'>
@@ -58,6 +64,10 @@ function ExpensesHistory() {
                 </TableBody>
             </Table>
         </TableContainer>
+        <div className="expenses-history__total">
+            <h2>Total: </h2>
+            <span>{totalAmount}</span>
+        </div>
     </div>
     )
 }

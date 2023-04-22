@@ -42,7 +42,7 @@ function NewExpensesRecord() {
     updateEditingExpensesRecord({ categoryId: Number(event.target.value) })
   );
   const handleAmountChange = (event: any) => dispatch(
-    updateEditingExpensesRecord({ amount: Number(event.target.value || 0) })
+    updateEditingExpensesRecord({ amount: Number(event.target.value) })
   );
   const handleDateChange = (momentDate: any) => dispatch(updateEditingExpensesRecord({ date: momentDate.toISOString() }));
 
@@ -64,8 +64,8 @@ function NewExpensesRecord() {
                         </Select>
                     </FormControl>
                 </Box>
-                <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="gb">
-                    <DatePicker onChange={handleDateChange} />
+                <LocalizationProvider dateAdapter={AdapterMoment}>
+                    <DatePicker label="Date" value={editingExpensesRecord?.date} onChange={handleDateChange} />
                 </LocalizationProvider>
                 <Box
                     component="form"
@@ -78,6 +78,7 @@ function NewExpensesRecord() {
                         type="number"
                         label="Amount"
                         variant="outlined"
+                        value={editingExpensesRecord?.amount ?? ''}
                         onChange={handleAmountChange}
                     />
                 </Box>

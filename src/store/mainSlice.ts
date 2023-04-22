@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 import {
   createSlice,
   PayloadAction,
@@ -14,32 +16,12 @@ import type {
 } from '../types.d';
 
 const initialState: IMainState = {
-  expensesRecords: [{
-    id: 1,
-    categoryId: 1,
-    date: new Date().toISOString(),
-    amount: 100,
-  }, {
-    id: 2,
-    categoryId: 2,
-    date: new Date().toISOString(),
-    amount: 200,
-  }, {
-    id: 3,
-    categoryId: 3,
-    date: new Date().toISOString(),
-    amount: 300,
-  }, {
-    id: 4,
-    categoryId: 4,
-    date: new Date().toISOString(),
-    amount: 400,
-  }, {
-    id: 5,
-    categoryId: 5,
-    date: new Date().toISOString(),
-    amount: 500,
-  }],
+  expensesRecords: Array(5).fill(null).map((el, i) => ({
+    id: i + 1,
+    categoryId: i + 1,
+    date: moment().add(i, 'days').toISOString(),
+    amount: 100 * (i + 1),
+  })),
   editingExpensesRecord: null,
   filters: { ...INITIAL_FILTERS },
 };
